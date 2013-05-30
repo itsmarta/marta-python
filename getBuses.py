@@ -31,14 +31,3 @@ def getBuses(route=''):
 	# For each bus in response, print a few pieces of data.
 	for bus in buses:
 		print(bus['ROUTE'] + '  LAT:' + bus['LATITUDE'] + '  LON:' + bus['LONGITUDE'] + '  ADHER:' + bus['ADHERENCE'] + '  VEHICLE:' + bus['VEHICLE'] + '\n')
-
-def main():
-	
-	# Input function to obtain route number from user
-	route = input('\n\nPlease enter a route number (leave blank for all routes):\n\n')
-	
-	# Call getBuses function with user-defined route number
-	getBuses(route)
-
-if __name__ == '__main__':
-	main()
