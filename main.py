@@ -1,12 +1,18 @@
-from getBuses import getBuses
+from getBuses import getBuses, getTrains
 
 def main():
 	
 	# Input function to obtain route number from user
-	route = input('\n\nPlease enter a route number (leave blank for all routes):\n\n')
+	route = input('\n\n*******Get Buses*******\n\nPlease enter a route number (leave blank for all routes):\n\n')
 	
 	# Call getBuses function with user-defined route number
 	getBuses(route)
+	
+	# Input function to obtain route number from user
+	station = input('\n\n*******Get Trains*******\n\nPlease enter a station (leave blank for all trains):\n\n')
+	
+	# Call getBuses function with user-defined route number
+	getTrains(station)
 
 if __name__ == '__main__':
 	main()
