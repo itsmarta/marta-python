@@ -1,4 +1,4 @@
-from getBuses import getBuses, getTrains
+from getVehicles import getBuses, getTrains
 
 def main():
 	
