@@ -28,10 +28,13 @@ def getBuses(route=''):
 	# Prints entirety of json response
 	#print(buses)
 	
-	output = bus['ROUTE'] + '  LAT:' + bus['LATITUDE'] + '  LON:' + bus['LONGITUDE'] + '  ADHER:' + bus['ADHERENCE'] + '  VEHICLE:' + bus['VEHICLE'] + '\n'
+	output = ''
 	
 	# For each bus in response, print a few pieces of data.
 	for bus in buses:
+		
+		output = bus['ROUTE'] + '  LAT:' + bus['LATITUDE'] + '  LON:' + bus['LONGITUDE'] + '  ADHER:' + bus['ADHERENCE'] + '  VEHICLE:' + bus['VEHICLE'] + '\n'
+		
 		print(output)
 
 def getTrains(station=''):
@@ -55,12 +58,16 @@ def getTrains(station=''):
 	
 	# Prints entirety of json response
 	#print(buses)
-	if prediction:
-		output = train['Direction'] + '  Waiting_Seconds:' + train['Waiting_Seconds'] + '  LOCATION:' + train['Location'] + '  TRACK:' + train['Track'] + '\n' + '  ID:' + train['Train_ID'] + '\n'
-	else:
-		output = train['Direction'] + '  LAT:' + train['Latitude'] + '  LON:' + train['Longitude'] + '  LOCATION:' + train['Location'] + '  TRACK:' + train['Track'] + '\n' + '  ID:' + train['Train_ID'] + '\n'
+	
+	output = ''
+	
 	# For each bus in response, print a few pieces of data.
 	for train in trains:
+		
+		if prediction:
+			output = 'dir: ' + train['Direction'] + '  Waiting_Seconds:' + str(train['Waiting_Seconds']) + '  LOCATION:' + train['Location'] + '  TRACK:' + train['Track'] + '\n' + '  ID:' + train['Train_ID'] + '\n'
+		else:
+			output = train['Direction'] + '  LAT:' + train['Latitude'] + '  LON:' + train['Longitude'] + '  LOCATION:' + train['Location'] + '  TRACK:' + train['Track'] + '\n' + '  ID:' + train['Train_ID'] + '\n'
 		print(output)
 
 	
