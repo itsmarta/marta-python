@@ -20,14 +20,10 @@ def get_trains(line=None, station=None, destination=None):
     data = loads(response.text)
     trains = [Train(t) for t in data]
 
-    if line is not None:
-        trains = [t for t in trains if t.line.lower() == line.lower()]
-
-    if station is not None:
-        trains = [t for t in trains if t.station.lower() == station.lower()]
-
-    if destination is not None:
-        trains = [t for t in trains if t.destination.lower() == destination.lower()]
+    trains = [t for t in trains if
+              (t.line.lower() == line.lower() if line is not None else True) and
+              (t.station.lower() == station.lower() if station is not None else True) and
+              (t.destination.lower() == destination.lower() if destination is not None else True)]
 
     return trains
 
