@@ -1,7 +1,13 @@
 from datetime import datetime
 
 
-class Bus():
+class Vehicle():
+    """Generic Vehicle object that exists to print vehicles as dicts"""
+    def __str__(self):
+        return str(self.__dict__)
+
+
+class Bus(Vehicle):
     def __init__(self, record):
         self.adherence = record.get('ADHERENCE')
         self.block_id = record.get('BLOCKID')
@@ -18,7 +24,7 @@ class Bus():
 
 
 
-class Train():
+class Train(Vehicle):
     def __init__(self, record):
         self.destination = record.get('DESTINATION')
         self.direction = record.get('DIRECTION')

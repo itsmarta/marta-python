@@ -1,6 +1,8 @@
 import pytest
 
+import marta
 from marta.api import get_buses, get_trains
+from marta.exceptions import APIKeyError
 from marta.vehicles import Bus, Train
 
 
@@ -57,3 +59,9 @@ def test_get_buses_by_route():
     for b in buses:
         assert isinstance(b, Bus)
         assert b.route == 1
+
+
+def test_missing_api_key():
+    marta.api._API_KEY = None
+    with pytest.raises(APIKeyError):
+        buses = get_buses()

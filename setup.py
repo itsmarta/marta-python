@@ -2,10 +2,11 @@ from setuptools import setup
 
 setup(
     name='marta',
+    description='Python library for accessing MARTA real-time API',
+    url='http://www.itsmarta.com/app-developer-resources.aspx',
     packages=['marta'],
-    entry_points={
-        'console_scripts': [
-            'marta = marta.api:main',
-        ],
-    },
+    install_requires=[
+       'requests',
+       'requests-cache'
+    ],
 )
