@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 class Bus():
     adherence = None
     block_id = None
@@ -25,7 +26,7 @@ class Bus():
         self.latitude = record.get('LATITUDE')
         self.longitude = record.get('LONGITUDE')
         self.last_updated = datetime.strptime(record.get('MSGTIME'), '%m/%d/%Y %H:%M:%S %p')
-        self.route = record.get('ROUTE')
+        self.route = int(record.get('ROUTE'))
         self.stop_id = record.get('STOPID')
         self.timepoint = record.get('TIMEPOINT')
         self.trip_id = record.get('TRIPID')
