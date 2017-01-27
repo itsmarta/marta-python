@@ -1,4 +1,5 @@
 import requests
+import requests_cache
 from json import loads
 from os import getenv
 from pprint import pprint
@@ -11,6 +12,8 @@ TRAIN_PATH = '/RealtimeTrain/RestServiceNextTrain/GetRealtimeArrivals'
 BUS_PATH = '/BRDRestService/RestBusRealTimeService/GetAllBus'
 BUS_ROUTE_PATH = '/BRDRestService/RestBusRealTimeService/GetBusByRoute/'
 
+requests_cache.install_cache('marta_api_cache', backend='sqlite', expire_after=30)
+
 
 def get_trains(line=None, station=None, destination=None):
     response = requests.get('{}{}?apikey={}'.format(BASE_URL, TRAIN_PATH, API_KEY))
@@ -21,10 +24,10 @@ def get_trains(line=None, station=None, destination=None):
         trains = [t for t in trains if t.line == line]
 
     if station is not None:
-        trains = [t for t in trains if t.station == station]
+        trains = [t for t in trains if t.station.lower() == station.lower()]
 
     if destination is not None:
-        trains = [t for t in trains if t.destination == destination]
+        trains = [t for t in trains if t.destination.lower() == destination.lower()]
 
     return trains
 
