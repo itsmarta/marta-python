@@ -2,6 +2,15 @@
 
 Python library for accessing MARTA real-time API
 
+## Testing
+
+```
+# Install tox
+pip install tox
+# Run tests
+tox
+```
+
 ## Installing
 
 ```
