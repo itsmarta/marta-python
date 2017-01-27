@@ -21,7 +21,7 @@ def get_trains(line=None, station=None, destination=None):
     trains = [Train(t) for t in data]
 
     if line is not None:
-        trains = [t for t in trains if t.line == line]
+        trains = [t for t in trains if t.line.lower() == line.lower()]
 
     if station is not None:
         trains = [t for t in trains if t.station.lower() == station.lower()]
