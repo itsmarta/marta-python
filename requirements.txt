@@ -1,1 +1,2 @@
-requests==2.12.5
+requests
+requests-cache
