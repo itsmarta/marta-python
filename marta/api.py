@@ -1,6 +1,6 @@
 import requests
 import requests_cache
-from json import loads
+from json import loads, JSONDecodeError
 from os import getenv
 from functools import wraps
 
@@ -9,7 +9,7 @@ from .vehicles import Bus, Train
 
 _API_KEY = getenv('MARTA_API_KEY')
 _CACHE_EXPIRE = int(getenv('MARTA_CACHE_EXPIRE', 30))
-_BASE_URL = 'http://developer.itsmarta.com/'
+_BASE_URL = 'http://developer.itsmarta.com'
 _TRAIN_PATH = '/RealtimeTrain/RestServiceNextTrain/GetRealtimeArrivals'
 _BUS_PATH = '/BRDRestService/RestBusRealTimeService/GetAllBus'
 _BUS_ROUTE_PATH = '/BRDRestService/RestBusRealTimeService/GetBusByRoute/'
@@ -41,7 +41,12 @@ def get_trains(line=None, station=None, destination=None, api_key=None):
     :param api_key (str): API key to override environment variable
     :return: list of Train objects
     """
-    response = requests.get('{}{}?apikey={}'.format(_BASE_URL, _TRAIN_PATH, api_key))
+    endpoint = '{}{}?apikey={}'.format(_BASE_URL, _TRAIN_PATH, api_key)
+    response = requests.get(endpoint)
+
+    if response.status_code == 401 or response.status_code == 403:
+        raise APIKeyError('Your API key seems to be invalid. Try visiting {}.'.format(endpoint))
+
     data = loads(response.text)
     trains = [Train(t) for t in data]
 
