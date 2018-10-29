@@ -1,6 +1,6 @@
 import requests
 import requests_cache
-from json import loads, JSONDecodeError
+from json import loads
 from os import getenv
 from functools import wraps
 
@@ -70,6 +70,9 @@ def get_buses(route=None, api_key=None):
         url = '{}{}/{}?apikey={}'.format(_BASE_URL, _BUS_ROUTE_PATH, str(route), api_key)
     else:
         url = '{}{}?apikey={}'.format(_BASE_URL, _BUS_PATH, _API_KEY)
+
+    if response.status_code == 401 or response.status_code == 403:
+        raise APIKeyError('Your API key seems to be invalid. Try visiting {}.'.format(endpoint))
 
     response = requests.get(url)
     data = loads(response.text)
