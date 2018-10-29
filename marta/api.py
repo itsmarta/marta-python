@@ -50,6 +50,10 @@ def get_trains(line=None, station=None, destination=None, api_key=None):
     data = loads(response.text)
     trains = [Train(t) for t in data]
 
+    # We only want results that match our criteria. This is done in a single list comprehension
+    # to avoid iterating over the response multiple times.
+    # Read as, for example, "if line parameter is specified, only include results for that line"
+    # TODO: Make this filtering more intuitive.
     trains = [t for t in trains if
               (t.line.lower() == line.lower() if line is not None else True) and
               (t.station.lower() == station.lower() if station is not None else True) and
