@@ -75,9 +75,10 @@ def get_buses(route=None, api_key=None):
     else:
         url = '{}{}?apikey={}'.format(_BASE_URL, _BUS_PATH, _API_KEY)
 
-    if response.status_code == 401 or response.status_code == 403:
-        raise APIKeyError('Your API key seems to be invalid. Try visiting {}.'.format(endpoint))
-
     response = requests.get(url)
+
+    if response.status_code == 401 or response.status_code == 403:
+        raise APIKeyError('Your API key seems to be invalid. Try visiting {}.'.format(url))
+
     data = loads(response.text)
     return [Bus(b) for b in data]
