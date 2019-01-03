@@ -68,7 +68,7 @@ trains = get_trains(line='red')
 trains = get_trains(station='Midtown Station')
 
 # Get trains by destination
-trains = get_trains(station='Doraville')
+trains = get_trains(destination='Doraville')
 
 # Get trains by line, station, and destination
 trains = get_trains(line='blue', station='Five Points Station', destination='Indian Creek')
