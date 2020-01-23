@@ -15,7 +15,7 @@ class Bus(Vehicle):
         self.direction = record.get('DIRECTION')
         self.latitude = record.get('LATITUDE')
         self.longitude = record.get('LONGITUDE')
-        self.last_updated = datetime.strptime(record.get('MSGTIME'), '%m/%d/%Y %H:%M:%S')
+        self.last_updated = datetime.strptime(record.get('MSGTIME'), '%m/%d/%Y %H:%M:%S %p')
         self.route = int(record.get('ROUTE'))
         self.stop_id = record.get('STOPID')
         self.timepoint = record.get('TIMEPOINT')
@@ -27,7 +27,7 @@ class Train(Vehicle):
     def __init__(self, record):
         self.destination = record.get('DESTINATION')
         self.direction = record.get('DIRECTION')
-        self.last_updated = datetime.strptime(record.get('EVENT_TIME'), '%m/%d/%Y %H:%M:%S')
+        self.last_updated = datetime.strptime(record.get('EVENT_TIME'), '%m/%d/%Y %H:%M:%S %p')
         self.line = record.get('LINE')
         self.next_arrival = datetime.strptime(record.get('NEXT_ARR'), '%H:%M:%S %p').time()
         self.station = record.get('STATION')
