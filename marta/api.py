@@ -66,7 +66,7 @@ def get_trains(line: str = None, station: str = None, destination: str = None, d
 
 
 @require_api_key
-def get_buses(route=None, stop_id: int = None, bus_id: str = None, api_key=None):
+def get_buses(route=None, stop_id: int = None, bus_id: int = None, timepoint: str=None, api_key=None):
     """
     Query API for bus information
     :param route (int): route number
@@ -87,5 +87,6 @@ def get_buses(route=None, stop_id: int = None, bus_id: str = None, api_key=None)
     buses = [Bus(b) for b in data]
     buses = [b for b in buses if
              (int(b.stop_id) == stop_id if stop_id is not None else True) and
-             (int(b.vehicle) == bus_id if bus_id is not None else True)]
+             (int(b.vehicle) == bus_id if bus_id is not None else True) and
+             (b.timepoint.lower() == timepoint.lower() if timepoint is not None else True)]
     return buses
