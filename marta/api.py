@@ -32,7 +32,7 @@ def require_api_key(func):
 
 
 @require_api_key
-def get_trains(line=None, station=None, destination=None, api_key=None):
+def get_trains(line=None, station=None, destination=None, direction=None, api_key=None):
     """
     Query API for train information
     :param line (str): train line identifier filter (red, gold, green, or blue)
@@ -57,7 +57,8 @@ def get_trains(line=None, station=None, destination=None, api_key=None):
     trains = [t for t in trains if
               (t.line.lower() == line.lower() if line is not None else True) and
               (t.station.lower() == station.lower() if station is not None else True) and
-              (t.destination.lower() == destination.lower() if destination is not None else True)]
+              (t.destination.lower() == destination.lower() if destination is not None else True) and
+              (t.direction.lower() == direction.lower() if direction is not None else True)]
 
     return trains
 
