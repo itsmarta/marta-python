@@ -58,6 +58,15 @@ buses = get_buses()
 # Get buses by route
 buses = get_buses(route=1)
 
+# Get buses by route, stop_id
+buses = get_buses(route=1, stop_id=900800)
+
+# Get buses by route, vehicle_id
+buses = get_buses(route=1, bus_id=1405)
+
+# Get buses by route, stop_id and vehicle_id
+buses = get_buses(route=1, stop_id=900800, bus_id=1405)
+
 # Get all trains
 trains = get_trains()
 
