@@ -9,6 +9,7 @@ class Vehicle():
 
 class Bus(Vehicle):
     def __init__(self, record):
+        self.raw_data = record
         self.adherence = record.get('ADHERENCE')
         self.block_id = record.get('BLOCKID')
         self.block_abbr = record.get('BLOCK_ABBR')
@@ -25,6 +26,7 @@ class Bus(Vehicle):
 
 class Train(Vehicle):
     def __init__(self, record):
+        self.raw_data = record
         self.destination = record.get('DESTINATION')
         self.direction = record.get('DIRECTION')
         self.last_updated = datetime.strptime(record.get('EVENT_TIME'), '%m/%d/%Y %H:%M:%S %p')
